@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+  <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='editor.css')}}">
+
+</head>
+<body>
+  <div class="w3-container w3-neutral-grey">
+    <h3>Latin Spell Checker</h3>
+    <p>Document: Wild1559-Mt,Paris</p>
+    <p>Page: 273</p>
+    <p>Status: GT</p>
+  </div>
+  <div class="w3-container">
+    <div>
+      <div class="w3-card w3-pale-yellow">
+        {% for line in page.lines %}
+        <div class="rawText w3-white w3-border-top">{{ line.raw_data }}</div>
+        <div class="cleanedText">
+          {% for word in line.words %}
+          <div class='word {{ "wrong" if word.spelling == "wrong" }}'>
+            {{ word.data }}
+            {% if word.spelling == "wrong" %}
+            <div class="dropdown">
+              {% for suggestion in word.suggestions %}
+                <div>{{ suggestion.term }} {{ suggestion.count }}</div>
+                <div><a href="http://archives.nd.edu/cgi-bin/wordz.pl?keyword={{ word.data }}" target="_blank">Ask a dictionary</a></div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</body> 
+</html>

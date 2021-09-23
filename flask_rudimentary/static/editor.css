@@ -1,0 +1,25 @@
+.word {
+    position: relative;
+    display: inline-block;
+}
+  
+.word.wrong {
+    position: relative;
+    display: inline-block;
+    text-decoration: underline; 
+    text-decoration-style: wavy; 
+    text-decoration-color: red;
+}
+  
+.dropdown {
+    display: none;   /* make the dropdown menu invisible */
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+  
+.word:hover .dropdown {
+    display: block;    /* make the dropdown menu invisible */
+    color: black;
+    text-shadow: none;
+}
